@@ -1,4 +1,5 @@
 module SessionsHelper
+
   def login_user(user)
     session[:user_id] = user.id
   end
@@ -15,7 +16,7 @@ module SessionsHelper
 
   def current_organizer
     if session[:organizer_id]
-      @current_organizer ||= Organzier.find_by(id: session[:organizer_id])
+      @current_organizer ||= Organizer.find_by(id: session[:organizer_id])
     end
   end
 
@@ -25,6 +26,14 @@ module SessionsHelper
 
   def organizer_logged_in?
     !current_organizer.nil?
+  end
+
+  def log_out
+    session.delete :user_id
+    session.delete :organizer_id
+
+    @current_user = nil
+    @current_organizer = nil
   end
 
 end
