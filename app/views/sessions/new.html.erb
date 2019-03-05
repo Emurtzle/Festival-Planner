@@ -1,0 +1,24 @@
+<h1>User Login: </h1>
+<%= form_for :session, url: user_login_path do |f|%>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+
+<%= f.label :password %>
+<%= f.password_field :password %><br>
+
+<%= f.submit "Login as User"%>
+<% end %>
+
+<h1>Organizer Login: </h1>
+
+<%= form_for :session, url: organizer_login_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %><br>
+
+  <%= f.submit "Login as Organizer"%>
+<% end %>
+
+<%= link_to "Register" %>

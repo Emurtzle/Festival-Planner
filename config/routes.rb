@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :festivals
   resources :stages
   resources :bands
-  resources :users
+  resources :users, only: [:show, :new, :create]
   resources :organizers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/' => 'application#index'
+
+  get '/login' => 'sessions#new'
+  post '/user_login' => 'sessions#create_user'
+  post '/organizer_login' => 'sessions#create_organizer'
 end
