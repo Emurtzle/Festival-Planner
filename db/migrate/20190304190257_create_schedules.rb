@@ -3,6 +3,7 @@ class CreateSchedules < ActiveRecord::Migration[5.2]
     create_table :schedules do |t|
       t.integer :festival_id
       t.integer :appointment_id
+      t.integer :user_id
 
       t.timestamps
     end

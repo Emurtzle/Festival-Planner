@@ -1,0 +1,19 @@
+<h1>Create an Appointment</h1>
+
+<%= form_for @appointment do |f|%>
+
+<%= f.label :band %>
+<%= f.collection_select(:band_id, Band.all, :id, :name) %><br>
+
+<%= f.label :stage %>
+<%= f.collection_select(:stage_id, @festival.stages, :id, :name ) %><br>
+
+<%= f.label :start_time %>
+<%= f.datetime_select :start %><br>
+
+<%= f.label :end_time %>
+<%= f.datetime_select :end %><br>
+
+
+<%= f.submit "Create Your Festival"%>
+<% end %>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :appointments
   resources :schedules
-  resources :festivals
-  resources :stages
+
+  resources :festivals do
+    resources :stages
+  end
+
   resources :bands
   resources :users, only: [:show, :new, :create, :destroy]
   resources :organizers, only: [:show, :new, :create, :destroy]

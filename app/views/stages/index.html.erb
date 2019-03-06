@@ -1,0 +1,8 @@
+<h1> Stages </h1>
+<p><%= link_to "#{@fest.name} Page", festival_path(@fest) %> </p>
+<ul>
+<% @stages.each do |f| %>
+  <li><%= link_to f.name, "/festivals/#{f.festival.id}/stages/#{f.id}" %></li>
+<% end %>
+</ul>
+<%= link_to "Add a stage", "/festivals/#{@fest.id}/stages/new" %>

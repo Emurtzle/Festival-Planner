@@ -5,6 +5,13 @@
     <title>Festival Planner - Home</title>
   </head>
   <body>
-    WELCOME TO OUR INDEX PAGE YA CAT DADDY
+    <% if organizer_logged_in? %>
+      <p><%= link_to "Create New Festival", new_festival_path %></p>
+      <p><%= link_to "My Account", current_organizer %></p>
+    <% elsif user_logged_in?%>
+      <p> Create a schedule</p>
+    <% else %>
+      <p></p>
+    <% end %>
   </body>
 </html>

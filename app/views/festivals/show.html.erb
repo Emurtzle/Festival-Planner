@@ -1,0 +1,19 @@
+<h1><%= @festival.name %></h1>
+<h2>City:</h2> <p><%= @festival.city %></p>
+<h2>Duration:</h2> <p><%= @festival.duration %> Days Long </p>
+<h2>Description:</h2> <p><%= @festival.description %></p>
+
+<h2>Stages:</h2>
+<ul>
+<% @festival.stages.each do |s|%>
+  <li><%= link_to s.name, "/festivals/#{s.festival.id}/stages/#{s.id}" %></li>
+<% end %>
+</ul>
+
+
+
+
+<% if @festival.organizer == current_organizer%>
+  <%= link_to "Edit Your Festival's Information", edit_festival_path(@festival) %><br>
+  <%= link_to "Edit Your Festival's Stages", "/festivals/#{@festival.id}/stages" %>
+<% end %>

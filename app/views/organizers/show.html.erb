@@ -1,1 +1,13 @@
-<h1><%= @organizer.name %></h1>
+<h1>My Account Page</h1>
+<h2>Name: <%= @organizer.name.capitalize %></h2>
+
+<h2>My Festivals</h2>
+<ul>
+  <% @organizer.festivals.each do |f| %>
+    <li><h3><%= link_to f.name, festival_path(f) %></h3></li>
+      <ul>
+        <li>City: <%= f.city %></li>
+        <li>Stage(s): <%= f.stages.count %></li>
+      </ul>
+  <% end %>
+</ul>

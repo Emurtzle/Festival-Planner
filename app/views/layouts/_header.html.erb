@@ -1,19 +1,21 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", '#', id: "logo" %>
+    <img src="/lib/assets/sample_logo.jpg"/>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '#' %></li>
-        <li><%= link_to "Help",   '#' %></li>
+        <li><%= link_to "Home", '/' %></li>
       </ul>
       <% if user_logged_in? %>
         User: <%= User.find(session[:user_id]).name %>
+        <%= button_to "My Account", "/users/#{current_user.id}", method:"get" %>
+        <%= button_to "Log Out", "/logout"%>
       <% elsif organizer_logged_in? %>
         Organizer: <%= Organizer.find(session[:organizer_id]).name %>
+        <%= button_to "My Account", "/organizers/#{current_organizer.id}", method:"get" %>
+        <%= button_to "Log Out", "/logout"%>
       <% else %>
+        <%= button_to "Log In", "/login", method:"get"%>
       <% end %>
-
-      <%= button_to "Log Out", "/logout"%>
     </nav>
   </div>
 </header>

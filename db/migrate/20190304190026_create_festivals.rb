@@ -6,6 +6,8 @@ class CreateFestivals < ActiveRecord::Migration[5.2]
       t.text :description
       t.integer :duration
 
+      t.integer :organizer_id
+
       t.timestamps
     end
   end

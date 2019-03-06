@@ -1,0 +1,5 @@
+Write a validation ensuring that for the latest appointment's end, and the earliest appointment's start,
+(for @appointments do |appointment|
+earliest_appt = appointment.start.DateTime.first
+latest_appt = appointment.end.DateTime.last  end.Date
+- start.Date) <= (@festival.duration)
