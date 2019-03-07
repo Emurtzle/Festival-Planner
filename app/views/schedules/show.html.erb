@@ -1,5 +1,14 @@
+<h1>Schedule for <%= @festival.name %></h1>
+
+<ul>
 <% @schedule.ordered_appointments.each do |appt| %>
-<li><%= link_to "#{appt.band.name}", band_path(appt.band)  - #{appt.stage.name}", stage_path(appt.stage) %></li>
-<li><%= "From" appt.start.to_time.strftime("%I:%M %p") "to" appt.end.to_time.strftime("%I:%M %p") %></li>
+<li>
+  <%= link_to appt.band.name, band_path(appt.band) %> at <%= link_to appt.stage.name, "/festivals/#{@festival.id}/stages/#{appt.stage.id}" %></li>
+<li>From <%= appt.start.strftime("%I:%M %p") %> to <%= appt.end.strftime("%I:%M %p") %></li>
+
+  <%= form_tag schedule_path(@schedule.id), method: "delete" do %>
+    <%= hidden_field_tag 'appointment_id', appt.id  %>
+    <%= submit_tag "Remove from your schedule"%>
+  <% end %>
 <% end %>
 </ul>

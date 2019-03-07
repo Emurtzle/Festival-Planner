@@ -1,10 +1,10 @@
 class SchedulesController < ApplicationController
   def index
-    @schedules = Schedule.all
-  end
-
-  def show
-    @festival = Festival.find(params[:id])
+    if current_user
+      if !current_user.schedules.empty?
+        @schedules = current_user.schedules
+      end
+    end
   end
 
   def new
@@ -20,6 +20,11 @@ class SchedulesController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def show
+    @schedule = Schedule.find(params[:id])
+    @festival = @schedule.festival
   end
 
   def edit
@@ -39,7 +44,32 @@ class SchedulesController < ApplicationController
     sched = Schedule.find_or_create_by(user_id: current_user.id, festival_id: params[:festival_id])
     sa = ScheduleAppointment.new(appointment_id: params[:appointment_id], schedule_id: sched.id)
     sa.save
+
+    if !sched.validate_time
+      sa.destroy
+      session[:error] = "Sorry, you already have an appointment for that time"
+    end
+
     redirect_to "/festivals/#{params[:festival_id]}/stages/#{params[:stage_id]}"
+  end
+
+  def bands_add
+    sched = Schedule.find_or_create_by(user_id: current_user.id, festival_id: params[:festival_id])
+    sa = ScheduleAppointment.new(appointment_id: params[:appointment_id], schedule_id: sched.id)
+    sa.save
+
+    if !sched.validate_time
+      sa.destroy
+      session[:error] = "Sorry, you already have an appointment for that time"
+    end
+
+    redirect_to band_path(sa.appointment.band)
+  end
+
+  def destroy
+    sa = ScheduleAppointment.find_by(appointment_id: params[:appointment_id])
+    sa.destroy
+    redirect_to schedule_path(sa.schedule)
   end
 
   def schedule_params

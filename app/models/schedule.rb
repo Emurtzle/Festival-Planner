@@ -11,10 +11,18 @@ class Schedule < ApplicationRecord
   end
 
   def validate_time
+    # binding.pry
     arr = []
-    self.appointments.each do |appt|
-      if ordered_appointments[i+1].start > ordered_appointments[i].end
-        arr << x
+    i=0
+    if ordered_appointments.count <= 1
+      return true
+    else
+      ordered_appointments.count-1.times do
+        # binding.pry
+        if ordered_appointments[i+1].start < ordered_appointments[i].end
+          arr << "x"
+        end
+        i += 1
       end
       arr.empty? ? true : false
     end

@@ -1,5 +1,10 @@
 <h1> Schedules </h1>
-<% @schedules.each do |f| %>
-<li><%= link_to f.festival.name, schedule_path(f) %></li>
+
+<% if @schedules %>
+  <% @schedules.each do |f| %>
+  <li><%= link_to f.festival.name, schedule_path(f) %></li>
+  <% end %>
+  </ul>
+<% else %>
+  <p>You must be logged in to your account to see your schedules</p>
 <% end %>
-</ul>

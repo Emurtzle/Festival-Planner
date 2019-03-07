@@ -2,9 +2,9 @@ class ScheduleAppointment < ApplicationRecord
   belongs_to :schedule
   belongs_to :appointment
 
-  validate :validate_time, on: :create
+  # validate :validate_time, on: :update
 
-  def validate_time
-    self.schedule.validate_time
-  end
+  # def validate_time
+  #   self.schedule.validate_time
+  # end
 end

@@ -8,10 +8,11 @@ class Appointment < ApplicationRecord
   validate :validate_time, on: :create
 
   def validate_time
+    # binding.pry
     #selects all apppointments with the same day as the appointment we are testing with the associated stage
-    appointments = self.stage.appointments.select { |a|
+    appointments = self.stage.appointments.select do |a|
       a.start.strftime("%A") == self.start.strftime("%A")
-    }
+    end
 
     if appointments.count > 0
       appointments.each do |appt|

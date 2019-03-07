@@ -20,6 +20,27 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def edit
+    @appointment = Appointment.find(params[:id])
+    @festival_number = session[:festival]["id"]
+    @festival = Festival.find(@festival_number)
+  end
+
+  def update
+    @appointment = Appointment.find(params[:id])
+    @festival = Festival.find(session[:festival]["id"])
+    if @appointment.update(appointment_params)
+      redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{params[:stage_id]}"
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    Appointment.find(params[:id]).destroy
+    redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{params[:stage_id]}"
+  end
+
   def appointment_params
     params.require(:appointment).permit(:stage_id, :band_id, :start, :end, :schedule_id)
   end

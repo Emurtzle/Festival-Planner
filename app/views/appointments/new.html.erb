@@ -1,5 +1,9 @@
 <h1>Create an Appointment</h1>
 
+<% if @appointment.errors.any? %>
+  <p>Sorry, a band is already playing at that time and stage</p>
+<% end %>
+
 <%= form_for @appointment do |f|%>
 
 <%= f.label :band %>

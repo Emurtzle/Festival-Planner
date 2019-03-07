@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
 
   post "/festivals/:festival_id/stages/:stage_id" => 'schedules#add'
+  post "/bands/:id" => 'schedules#bands_add'
+
+  delete "/schedules/:id" => 'schedules#destroy'
+
+  delete "/appointments/:id" => 'appointments#destroy'
+
+  delete "stages/:id" => 'schedules#destroy'
 end
 
  # post "/festivals/1/stages/1?url=%2Fschedules%3Fmethod%3Dadd"

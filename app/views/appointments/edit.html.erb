@@ -1,0 +1,23 @@
+<h1>Edit an Appointment</h1>
+
+<% if @appointment.errors.any? %>
+  <p>Sorry, a band is already playing at that time and stage</p>
+<% end %>
+
+<%= form_for @appointment do |f|%>
+
+<%= f.label :band %>
+<%= f.collection_select(:band_id, Band.all, :id, :name) %><br>
+
+<%= f.label :stage %>
+<%= f.collection_select(:stage_id, @festival.stages, :id, :name ) %><br>
+
+<%= f.label :start_time %>
+<%= f.datetime_select :start %><br>
+
+<%= f.label :end_time %>
+<%= f.datetime_select :end %><br>
+
+
+<%= f.submit "Edit Your Appointment"%>
+<% end %>

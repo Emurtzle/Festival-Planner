@@ -15,7 +15,24 @@
     <li>
       <ul>
         <%= link_to appt.stage.name, "/festivals/#{appt.stage.festival.id}/stages/#{appt.stage.id}" %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
-      </ul>
+
+        <% if user_logged_in? %>
+          <%= form_tag :url => url_for(:controller => 'schedules', :method => 'post') do %>
+            <%= hidden_field_tag 'appointment_id', appt.id  %>
+            <%= submit_tag "Add to your Schedule"%>
+          <% end %>
+        <% end %>
+
+          <% if organizer_logged_in? %>
+            <%= form_tag edit_appointment_path(appt), method: "get" do %>
+              <%= submit_tag "Edit this Appointment" %>
+            <% end %>
+
+          <%= form_tag appointment_path(appt), method: "delete" do %>
+            <%= hidden_field_tag 'appointment_id', appt.id %>
+            <%= submit_tag "Delete this Appointment" %>
+          <% end %>
+        <% end %>
     </li>
   <% end %>
 </ul>

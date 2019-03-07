@@ -4,6 +4,11 @@
 
 <p><%= link_to "Edit Stage", edit_festival_stage_path %></p>
 
+<% if session[:error] %>
+  <p><%= session[:error] %></p>
+  <% session.delete :error %>
+<% end %>
+
 <h2>Stage Schedule</h2>
 <ul>
 <% @stage.ordered_appointments.each do |appt| %>
@@ -15,6 +20,17 @@
         <%= submit_tag "Add to your Schedule"%>
       <% end %>
     <% end %>
+
+    <% if organizer_logged_in? %>
+      <%= form_tag edit_appointment_path(appt), method: "get" do %>
+        <%= submit_tag "Edit this Appointment" %>
+      <% end %>
+
+    <%= form_tag appointment_path(appt), method: "delete" do %>
+      <%= hidden_field_tag 'appointment_id', appt.id %>
+      <%= submit_tag "Delete this Appointment" %>
+    <% end %>
+  <% end %>
   </li>
 <% end %>
-<ul>
+</ul>
