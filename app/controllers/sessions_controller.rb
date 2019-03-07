@@ -5,11 +5,9 @@ class SessionsController < ApplicationController
 
   #Reminder to adjust case comparisons here
   def create_user
-    binding.pry
     user = User.find_by(name: params[:session][:name])
     if user && user.authenticate(params[:session][:password])
       login_user(user)
-      binding.pry
       redirect_to user_path(user)
     else
       render 'new'

@@ -7,11 +7,12 @@
   <body>
     <% if organizer_logged_in? %>
       <p><%= link_to "Create New Festival", new_festival_path %></p>
-      <p><%= link_to "My Account", current_organizer %></p>
     <% elsif user_logged_in?%>
       <p> Create a schedule</p>
     <% else %>
-      <p></p>
+      <h1>Please Create an Account or Login to get started</h1>
+      <h2>Organizers can create festivals</h2>
+      <h2>Users can make their own schedule</h2>
     <% end %>
   </body>
 </html>

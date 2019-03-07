@@ -1,0 +1,21 @@
+<%= link_to "Return to Band List", bands_path %>
+<h1><%= @band.name %></h1>
+<p><%= @band.description %></p>
+
+<br>
+
+<h2>Appointments:</h2>
+
+<% if @band.appointments.count < 1 %>
+  <p>Looks like this band hasn't been booked yet, please come back later</p>
+<% end %>
+
+<ul>
+  <% @band.appointments.each do |appt| %>
+    <li>
+      <ul>
+        <%= link_to appt.stage.name, "/festivals/#{appt.stage.festival.id}/stages/#{appt.stage.id}" %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

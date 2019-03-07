@@ -24,7 +24,7 @@ class FestivalsController < ApplicationController
   end
 
   def edit
-    @festival = Festival.find_by(params[:id])
+    @festival = Festival.find(params[:id])
   end
 
   def update

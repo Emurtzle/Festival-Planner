@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Band.create(name: "Red Hot Chili Peppers", description: "Funk Rock Powerhouse")
+Band.create(name: "Skrillex", description: "Leading Dubstep Producer and DJ")
+Band.create(name: "Liquid Stranger", description: "Weird and Wonderful")
+Band.create(name: "Modest Mouse", description: "Excellently Ecclectic")
+Band.create(name: "Glass Animals", description: "Catchy, Trippy Music")
+Band.create(name: "Beats Antique", description: "Shadowbox Tour")
+Band.create(name: "Tipper", description: "Electronic legend presents an audio/visual masterpiece")
+Band.create(name: "Phantogram", description: "Emotional Madness")
+Band.create(name: "Big Grams", description: "Phantogram Colab with Big Boi")
+Band.create(name: "Radiohead", description: "Live out your teenage agnst")
+Band.create(name: "Mumford and Sons", description: "Not those songs! The new ones!!")
+Band.create(name: "Catfish and the Bottlemen", description: "Solid Rock Band")
+Band.create(name: "Foo Fighters", description: "Best Rock Band")
+Band.create(name: "Pearl Jam", description: "All procedes go to the homeless of Seattle")
+Band.create(name: "G-Jones", description: "Space Bass Master / Beat Maker Maestro")

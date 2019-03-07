@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   post '/organizer_login' => 'sessions#create_organizer'
 
   post '/logout' => 'sessions#destroy'
+
+  post "/festivals/:festival_id/stages/:stage_id" => 'schedules#add'
 end
+
+ # post "/festivals/1/stages/1?url=%2Fschedules%3Fmethod%3Dadd"

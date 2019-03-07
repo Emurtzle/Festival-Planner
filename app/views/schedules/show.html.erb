@@ -1,0 +1,5 @@
+<% @schedule.ordered_appointments.each do |appt| %>
+<li><%= link_to "#{appt.band.name}", band_path(appt.band)  - #{appt.stage.name}", stage_path(appt.stage) %></li>
+<li><%= "From" appt.start.to_time.strftime("%I:%M %p") "to" appt.end.to_time.strftime("%I:%M %p") %></li>
+<% end %>
+</ul>

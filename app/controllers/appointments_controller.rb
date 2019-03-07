@@ -12,11 +12,16 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
+    @festival = Festival.find(session[:festival]["id"])
     if @appointment.save
-      redirect_to "/festivals/#{Festival.find(params[:festival_id]).id}/stages/#{@appointment.stage.id}"
+      redirect_to "/festivals/#{Festival.find(session[:festival]["id"]).name}/stages/#{@appointment.stage.id}"
     else
       render 'new'
     end
+  end
+
+  def appointment_params
+    params.require(:appointment).permit(:stage_id, :band_id, :start, :end, :schedule_id)
   end
 
 

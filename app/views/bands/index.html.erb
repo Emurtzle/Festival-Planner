@@ -1,0 +1,10 @@
+<h1>List of Bands</h1>
+
+<ul>
+<% @bands.each do |b| %>
+  <li>
+    <h3><%= link_to b.name, band_path(b) %></h3>
+    <p><%= b.description %></p>
+  </li>
+<% end %>
+</ul>

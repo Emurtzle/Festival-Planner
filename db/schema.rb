@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_190352) do
+ActiveRecord::Schema.define(version: 2019_03_07_010202) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "stage_id"
     t.integer "band_id"
-    t.integer "schedule_id"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", null: false
@@ -46,9 +45,15 @@ ActiveRecord::Schema.define(version: 2019_03_04_190352) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedule_appointments", force: :cascade do |t|
+    t.integer "appointment_id"
+    t.integer "schedule_id"
+    t.index ["appointment_id"], name: "index_schedule_appointments_on_appointment_id"
+    t.index ["schedule_id"], name: "index_schedule_appointments_on_schedule_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer "festival_id"
-    t.integer "appointment_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

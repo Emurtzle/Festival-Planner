@@ -3,3 +3,18 @@
 <p><%= @stage.description %></p><br>
 
 <p><%= link_to "Edit Stage", edit_festival_stage_path %></p>
+
+<h2>Stage Schedule</h2>
+<ul>
+<% @stage.ordered_appointments.each do |appt| %>
+  <li>
+    <%= link_to appt.band.name, band_path(appt.band) %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
+    <% if user_logged_in? %>
+      <%= form_tag :url => url_for(:controller => 'schedules', :method => 'post') do %>
+        <%= hidden_field_tag 'appointment_id', appt.id  %>
+        <%= submit_tag "Add to your Schedule"%>
+      <% end %>
+    <% end %>
+  </li>
+<% end %>
+<ul>

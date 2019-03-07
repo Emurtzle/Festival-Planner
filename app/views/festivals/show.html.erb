@@ -15,5 +15,6 @@
 
 <% if @festival.organizer == current_organizer%>
   <%= link_to "Edit Your Festival's Information", edit_festival_path(@festival) %><br>
-  <%= link_to "Edit Your Festival's Stages", "/festivals/#{@festival.id}/stages" %>
+  <%= link_to "Edit Your Festival's Stages", "/festivals/#{@festival.id}/stages" %><br>
+  <%= link_to "Add Appointments", "/appointments/new" %>
 <% end %>
