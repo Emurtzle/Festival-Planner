@@ -30,14 +30,14 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @festival = Festival.find(session[:festival]["id"])
     if @appointment.update(appointment_params)
-      redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{params[:stage_id]}"
+      redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{@appointment.stage.id}"
     else
       render "edit"
     end
   end
 
   def destroy
-    binding.pry
+    ScheduleAppointment.where(appointment_id: params[:appointment_id]).destroy_all
     Appointment.find(params[:appointment_id]).destroy
     redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{params[:stage_id]}"
   end

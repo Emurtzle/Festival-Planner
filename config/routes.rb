@@ -18,8 +18,12 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy'
 
+  post "/festivals/:festival_id/stages/:stage_id/edit" => 'stages#edit'
+
   post "/festivals/:festival_id/stages/:stage_id" => 'schedules#add'
   post "/bands/:id" => 'schedules#bands_add'
+
+  patch "festival/:id/stages/:id" => 'stages#update'
 
   delete "/schedules/:id" => 'schedules#destroy'
 

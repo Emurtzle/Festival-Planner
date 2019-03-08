@@ -1,6 +1,9 @@
-<%= link_to "Return to Band List", bands_path %>
+<p style="font-size: 20px"><%= link_to "Return to Band List", bands_path %></p>
+
+<img src="<%= @band.img_link %>" height="200" width="200">
+
 <h1><%= @band.name %></h1>
-<p><%= @band.description %></p>
+<p style="font-size: 30px"><%= @band.description %></p>
 
 <br>
 
@@ -8,7 +11,7 @@
   <h2><%= link_to "Book this Band", new_appointment_path %></h2>
 <% end %>
 
-<h2>Appointments:</h2>
+<h2>Bookings:</h2>
 
 <% if @band.appointments.count < 1 %>
   <p>Looks like this band hasn't been booked yet, please come back later</p>
@@ -16,12 +19,9 @@
 
 <ul>
   <% @band.appointments.each do |appt| %>
-    <li>
-      <ul>
-        <%= link_to appt.stage.name, "/festivals/#{appt.stage.festival.id}/stages/#{appt.stage.id}" %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
-
-
-
+    <li style="font-size: 25px">
+        <%= link_to appt.stage.festival.name, "/festivals/#{appt.stage.festival.id}" %> - <%= link_to appt.stage.name, "/festivals/#{appt.stage.festival.id}/stages/#{appt.stage.id}" %> - <%= appt.start.strftime("%a, %d %b %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
+        
           <% if organizer_logged_in? %>
             <%= form_tag edit_appointment_path(appt), method: "get" do %>
               <%= submit_tag "Edit this Appointment" %>

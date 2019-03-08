@@ -6,6 +6,7 @@ class Appointment < ApplicationRecord
   has_many :schedules, through: :scheduleappointments
 
   validate :validate_time, on: :create
+  validate :validate_time, on: :update
 
   def validate_time
     # binding.pry

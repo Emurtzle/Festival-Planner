@@ -25,14 +25,14 @@ class StagesController < ApplicationController
   end
 
   def edit
-    @stage = Stage.find(params[:id])
+    @stage = Stage.find(params[:stage_id])
     @fest = Festival.find(params[:festival_id])
   end
 
   def update
     @stage = Stage.find(params[:id])
     if @stage.update(stage_params)
-      redirect_to "/festivals/#{Festival.find(params[:festival_id]).id}/stages/#{@stage.id}"
+      redirect_to "/festivals/#{@stage.festival.id}/stages/#{@stage.id}"
     else
       render 'edit'
     end

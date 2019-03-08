@@ -1,10 +1,10 @@
-<p><%= link_to "#{@stage.festival.name} Page", festival_path(@stage.festival) %></p>
+<p style="font-size: 30px"><%= link_to "#{@stage.festival.name} Page", festival_path(@stage.festival) %></p>
 <h1><%= @stage.name %></h1>
-<p><%= @stage.description %></p><br>
+<p style="font-size: 25px"><%= @stage.description %></p><br>
 
-<% if organizer_logged_in? %>
+<% if organizer_logged_in? && @stage.festival.organizer == current_organizer%>
   <h2><%= link_to "Schedule Shows for this Stage", new_appointment_path %></h2>
-  <p><%= link_to "Edit Stage", edit_festival_stage_path %></p>
+  <p><%= button_to "Edit Stage", "/festivals/#{@stage.festival.id}/stages/#{@stage.id}/edit" %></p>
 <% end %>
 
 <% if session[:error] %>
@@ -12,10 +12,10 @@
   <% session.delete :error %>
 <% end %>
 
-<h2>Stage Schedule</h2>
+<h2 style="font-size: 45px">Stage Schedule</h2>
 <ul>
 <% @stage.ordered_appointments.each do |appt| %>
-  <li>
+  <li style="font-size: 30px">
     <%= link_to appt.band.name, band_path(appt.band) %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
     <% if user_logged_in? %>
       <%= form_tag :url => url_for(:controller => 'schedules', :method => 'post') do %>
@@ -24,7 +24,7 @@
       <% end %>
     <% end %>
 
-    <% if organizer_logged_in? %>
+    <% if organizer_logged_in? && @stage.festival.organizer == current_organizer %>
       <%= form_tag edit_appointment_path(appt), method: "get" do %>
         <%= submit_tag "Edit this Appointment" %>
       <% end %>

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_03_07_010202) do
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "img_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
