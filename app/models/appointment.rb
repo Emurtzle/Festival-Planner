@@ -9,7 +9,7 @@ class Appointment < ApplicationRecord
   validate :validate_time, on: :update
 
   def validate_time
-    # binding.pry
+    binding.pry
     #selects all apppointments with the same day as the appointment we are testing with the associated stage
     appointments = self.stage.appointments.select do |a|
       a.start.strftime("%A") == self.start.strftime("%A")
@@ -22,6 +22,7 @@ class Appointment < ApplicationRecord
                            self.start <= appt.start && appt.start <= self.end
 
             self.errors.add(:start, "not available")
+            false
           end
         end
       end
