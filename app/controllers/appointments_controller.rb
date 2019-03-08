@@ -37,7 +37,8 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    Appointment.find(params[:id]).destroy
+    binding.pry
+    Appointment.find(params[:appointment_id]).destroy
     redirect_to "/festivals/#{session[:festival]["id"]}/stages/#{params[:stage_id]}"
   end
 

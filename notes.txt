@@ -1,5 +1,23 @@
-Write a validation ensuring that for the latest appointment's end, and the earliest appointment's start,
-(for @appointments do |appointment|
-earliest_appt = appointment.start.DateTime.first
-latest_appt = appointment.end.DateTime.last  end.Date
-- start.Date) <= (@festival.duration)
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <img src="/lib/assets/sample_logo.jpg"/>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", '/' %></li>
+        <li><%= link_to "Festivals", "/festivals" %></li>
+        <li><%= link_to "Bands", "/bands" %></li>
+      </ul>
+      <% if user_logged_in? %>
+        User: <%= User.find(session[:user_id]).name %>
+        <%= button_to "My Account", "/users/#{current_user.id}", method:"get" %>
+        <%= button_to "Log Out", "/logout"%>
+      <% elsif organizer_logged_in? %>
+        Organizer: <%= Organizer.find(session[:organizer_id]).name %>
+        <%= button_to "My Account", "/organizers/#{current_organizer.id}", method:"get" %>
+        <%= button_to "Log Out", "/logout"%>
+      <% else %>
+        <%= button_to "Login / Create Account", "/login", method:"get"%>
+      <% end %>
+    </nav>
+  </div>
+</header>

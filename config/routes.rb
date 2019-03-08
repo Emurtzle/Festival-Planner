@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/user_login' => 'sessions#create_user'
   post '/organizer_login' => 'sessions#create_organizer'
 
-  post '/logout' => 'sessions#destroy'
+  get '/logout' => 'sessions#destroy'
 
   post "/festivals/:festival_id/stages/:stage_id" => 'schedules#add'
   post "/bands/:id" => 'schedules#bands_add'

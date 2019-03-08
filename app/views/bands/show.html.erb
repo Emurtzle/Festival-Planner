@@ -4,6 +4,10 @@
 
 <br>
 
+<% if organizer_logged_in? %>
+  <h2><%= link_to "Book this Band", new_appointment_path %></h2>
+<% end %>
+
 <h2>Appointments:</h2>
 
 <% if @band.appointments.count < 1 %>
@@ -16,12 +20,7 @@
       <ul>
         <%= link_to appt.stage.name, "/festivals/#{appt.stage.festival.id}/stages/#{appt.stage.id}" %> - <%= appt.start.strftime("%a, %l:%M %p") %> to <%= appt.end.strftime("%l:%M %p") %>
 
-        <% if user_logged_in? %>
-          <%= form_tag :url => url_for(:controller => 'schedules', :method => 'post') do %>
-            <%= hidden_field_tag 'appointment_id', appt.id  %>
-            <%= submit_tag "Add to your Schedule"%>
-          <% end %>
-        <% end %>
+
 
           <% if organizer_logged_in? %>
             <%= form_tag edit_appointment_path(appt), method: "get" do %>

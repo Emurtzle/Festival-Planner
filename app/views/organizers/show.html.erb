@@ -1,6 +1,7 @@
 <h1>My Account Page</h1>
 <h2>Name: <%= @organizer.name.capitalize %></h2>
 
+<p><%= link_to "Create New Festival", new_festival_path %></p>
 <h2>My Festivals</h2>
 <ul>
   <% @organizer.festivals.each do |f| %>

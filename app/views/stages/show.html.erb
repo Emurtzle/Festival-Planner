@@ -2,7 +2,10 @@
 <h1><%= @stage.name %></h1>
 <p><%= @stage.description %></p><br>
 
-<p><%= link_to "Edit Stage", edit_festival_stage_path %></p>
+<% if organizer_logged_in? %>
+  <h2><%= link_to "Schedule Shows for this Stage", new_appointment_path %></h2>
+  <p><%= link_to "Edit Stage", edit_festival_stage_path %></p>
+<% end %>
 
 <% if session[:error] %>
   <p><%= session[:error] %></p>

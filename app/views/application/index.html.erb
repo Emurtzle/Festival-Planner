@@ -6,9 +6,11 @@
   </head>
   <body>
     <% if organizer_logged_in? %>
+      <h2><%= link_to "Festivals", "/festivals" %></h2>
       <p><%= link_to "Create New Festival", new_festival_path %></p>
     <% elsif user_logged_in?%>
-      <p> Create a schedule</p>
+      <p><%= link_to "Festivals", "/festivals" %></p>
+      <p><%= link_to "Bands", "/bands" %></p>
     <% else %>
       <h1>Please Create an Account or Login to get started</h1>
       <h2>Organizers can create festivals</h2>

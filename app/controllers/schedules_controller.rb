@@ -57,7 +57,6 @@ class SchedulesController < ApplicationController
     sched = Schedule.find_or_create_by(user_id: current_user.id, festival_id: params[:festival_id])
     sa = ScheduleAppointment.new(appointment_id: params[:appointment_id], schedule_id: sched.id)
     sa.save
-
     if !sched.validate_time
       sa.destroy
       session[:error] = "Sorry, you already have an appointment for that time"
